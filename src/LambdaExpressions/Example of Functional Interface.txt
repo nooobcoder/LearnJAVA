@@ -1,0 +1,17 @@
+Functional Interfaces
+As stated, a functional interface is an interface that specifies only one abstractmethod. If you have been programming in Java for some time, you might atfirst think that all interface methods are implicitly abstract. Although this wastrue prior to JDK 8, the situation has changed. As explained in Chapter 9,beginning with JDK 8, it is possible to specify a default implementation for amethod declared in an interface. Private and static interface methods alsosupply an implementation. As a result, today, an interface method is abstractonly if it does not specify an implementation. Because non-default non-static,non-private interface methods are implicitly abstract, there is no need to usethe abstract modifier (although you can specify it, if you like).Here is an example of a functional interface:
+
+interface MyNumber{
+    double getValue(); // This function is abstract implicitly.
+}
+
+Let’s work through an example that shows how a lambda expression can beused in an assignment context. First, a reference to the functional interfaceMyNumber is declared:// Create a reference to a MyNumber instance.MyNumber myNum;Next, a lambda expression is assigned to that interface reference:// Use a lambda in an assignment context.myNum = () -> 123.45;
+
+When a lambda expression occurs in a target type context, an instance of aclass is automatically created that implements the functional interface, with thelambda expression defining the behavior of the abstract method declared by thefunctional interface. When that method is called through the target, the lambdaexpression is executed. Thus, a lambda expression gives us a way to transforma code segment into an object.In the preceding example, the lambda expression becomes theimplementation for the getValue( ) method. As a result, the following displaysthe value 123.45:
+
+// Call getValue(), which is implemented by the previouslyassigned
+// lambda expression.System.out.println(myNum.getValue());Because the lambda expression assigned to myNum returns the value 123.45,that is the value obtained when getValue( ) is called.In order for a lambda expression to be used in a target type context, the type
+
+
+In order for a lambda expression to be used in a target type context, the type
+of the abstract method and the type of the lambda expression must becompatible. For example, if the abstract method specifies two int parameters,then the lambda must specify two parameters whose type either is explicitly intor can be implicitly inferred as int by the context. In general, the type andnumber of the lambda expression’s parameters must be compatible with themethod’s parameters; the return types must be compatible; and any exceptionsthrown by the lambda expression must be acceptable to the method.

@@ -1,0 +1,44 @@
+Method References
+There is an important feature related to lambda expressions called the method
+reference. A method reference provides a way to refer to a method withoutexecuting it. It relates to lambda expressions because it, too, requires a targettype context that consists of a compatible functional interface. When evaluated,a method reference also creates an instance of the functional interface.There are different types of method references. We will begin with methodreferences to static methods.Method References to static MethodsTo create a static method reference, use this general syntax:ClassName::methodNameNotice that the class name is separated from the method name by a doublecolon. The :: is a separator that was added to Java by JDK 8 expressly for thispurpose. This method reference can be used anywhere in which it is compatiblewith its target type.The following program demonstrates a static method reference:
+
+Method References to static MethodsTo create a static method reference, use this general syntax:ClassName::methodNameNotice that the class name is separated from the method name by a doublecolon. The :: is a separator that was added to Java by JDK 8 expressly for thispurpose. This method reference can be used anywhere in which it is compatiblewith its target type.The following program demonstrates a static method reference:
+
+// Demonstrate a method reference for a static method
+
+// A functional interface for string operations
+interface StringFunc {
+    String func(String n);
+}
+
+// This method defines a static method called strReverse
+class MyStringOps {
+    // A static method, that reverses a string
+    static String strReverse(String s) {
+        String result = "";
+        for (int h = s.length() - 1; h >= 0; --h) {
+            result += s.charAt(h);
+        }
+        return result;
+    }
+}
+
+public class MethodRefDemo {
+    // This method has a functional interface as the type of it's first parameter.
+    // Thus it can be passed any instance of that interface, including a method
+    // interface.
+    static String stringOp(StringFunc sf, String str) {
+        return sf.func(str);
+    }
+
+    public static void main(String[] args) {
+        String str = "Lambdas add power to Java";
+        String outStr = "";
+
+        // Here a method reference to strReverse is passed to stringOp
+        outStr = stringOp(MyStringOps::strReverse, str);
+
+        System.out.println("Original String:  " + str);
+        System.out.println("Reversed String:  " + outStr);
+    }
+}

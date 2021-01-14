@@ -1,11 +1,11 @@
 package Threads;
 
-class NewThread implements Runnable {
+class NewThreadSuspendable implements Runnable {
     String name;
     Thread t;
     boolean suspendFlag;
 
-    public NewThread(String name) {
+    public NewThreadSuspendable(String name) {
         this.name = name;
         t = new Thread(this, name);
         System.out.println("New Thread: " + t);
@@ -42,8 +42,8 @@ class NewThread implements Runnable {
 
 public class SuspendResumeStopThread {
     public static void main(String[] args) {
-        NewThread ob1 = new NewThread("First");
-        NewThread ob2 = new NewThread("Second");
+        NewThreadSuspendable ob1 = new NewThreadSuspendable("First");
+        NewThreadSuspendable ob2 = new NewThreadSuspendable("Second");
 
         ob1.t.start();
         ob2.t.start();
