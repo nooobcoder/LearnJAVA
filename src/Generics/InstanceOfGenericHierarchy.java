@@ -40,7 +40,7 @@ public class InstanceOfGenericHierarchy {
         System.out.println("a instance of Super class?  " + (a instanceof GenericSuper3<?>));
         System.out.println();
 
-        System.out.println((b instanceof GenericSubclass3<Integer>));
+        System.out.println(b instanceof GenericSubclass3<?>);
         // System.out.println((c instanceof GenericSubclass3<Integer>)); // This would cause a compile-time error
         System.out.println();
 
